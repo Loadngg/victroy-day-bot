@@ -1,0 +1,515 @@
+openapi: 3.0.3
+info:
+  title: ''
+  version: 0.0.0
+paths:
+  /api/answer/:
+    post:
+      operationId: api_answer_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamPlaceAnswer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TeamPlaceAnswer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TeamPlaceAnswer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamPlaceAnswer'
+          description: ''
+  /api/answer/{id}:
+    put:
+      operationId: api_answer_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamPlaceAnswer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TeamPlaceAnswer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TeamPlaceAnswer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamPlaceAnswer'
+          description: ''
+    patch:
+      operationId: api_answer_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTeamPlaceAnswer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTeamPlaceAnswer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTeamPlaceAnswer'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamPlaceAnswer'
+          description: ''
+  /api/path/{region_id}/:
+    get:
+      operationId: api_path_list
+      parameters:
+      - in: path
+        name: region_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Path'
+          description: ''
+  /api/place/{id}/:
+    get:
+      operationId: api_place_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Place'
+          description: ''
+  /api/region/:
+    get:
+      operationId: api_region_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Region'
+          description: ''
+  /api/schema/:
+    get:
+      operationId: api_schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/team/:
+    post:
+      operationId: api_team_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Team'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Team'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: ''
+components:
+  schemas:
+    PatchedTeamPlaceAnswer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        start_datetime:
+          type: string
+          format: date-time
+          nullable: true
+          title: Время начала отгадывания места
+        end_datetime:
+          type: string
+          format: date-time
+          nullable: true
+          title: Время окончания отгадывания места
+        photo:
+          type: string
+          format: uri
+          nullable: true
+          title: Фото-подтверждение
+        task_answer:
+          type: string
+          nullable: true
+          title: Ответ на задание
+        team:
+          type: integer
+          title: Команда
+        place:
+          type: integer
+          title: Место
+    Path:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Название
+          maxLength: 255
+        region:
+          type: integer
+          nullable: true
+          title: Регион
+        places:
+          type: array
+          items:
+            type: integer
+            title: Места
+          readOnly: true
+          title: Места
+      required:
+      - id
+      - name
+      - places
+    Place:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Название
+          maxLength: 255
+        coordinates:
+          type: string
+          title: Координаты
+          maxLength: 255
+        text_riddle:
+          type: string
+          nullable: true
+          title: Загадка при прибытии на место
+        video_riddle_url:
+          type: string
+          format: uri
+          title: Видео загадка
+          maxLength: 200
+        video_story_url:
+          type: string
+          format: uri
+          title: Видео с историей места
+          maxLength: 200
+        task_file:
+          type: string
+          format: uri
+          title: Задание
+      required:
+      - coordinates
+      - id
+      - name
+      - task_file
+      - video_riddle_url
+      - video_story_url
+    Region:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Название
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+      required:
+      - description
+      - id
+      - name
+    Team:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Название
+          maxLength: 255
+        contacts:
+          type: string
+          title: Контакты для связи
+          maxLength: 255
+        path:
+          type: integer
+          title: Выбранная траектория
+      required:
+      - contacts
+      - id
+      - name
+      - path
+    TeamPlaceAnswer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        start_datetime:
+          type: string
+          format: date-time
+          nullable: true
+          title: Время начала отгадывания места
+        end_datetime:
+          type: string
+          format: date-time
+          nullable: true
+          title: Время окончания отгадывания места
+        photo:
+          type: string
+          format: uri
+          nullable: true
+          title: Фото-подтверждение
+        task_answer:
+          type: string
+          nullable: true
+          title: Ответ на задание
+        team:
+          type: integer
+          title: Команда
+        place:
+          type: integer
+          title: Место
+      required:
+      - id
+      - place
+      - team
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
