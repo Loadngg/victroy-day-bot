@@ -1,13 +1,25 @@
 package config
 
-import "os"
+import (
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/joho/godotenv"
+)
 
 type Config struct {
 	Token string
 }
 
 func MustLoad() *Config {
-	cfg := Config{Token: os.Getenv("TELEGRAM_APITOKEN")}
+	err := godotenv.Load("../../.env")
+	if err != nil {
+		fmt.Println(err)
+		log.Fatal("Error loading .env file")
+	}
+	token := os.Getenv("TELEGRAM_APITOKEN")
+	cfg := Config{Token: token}
 
 	return &cfg
 }
